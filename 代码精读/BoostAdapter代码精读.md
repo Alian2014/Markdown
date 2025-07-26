@@ -19,4 +19,24 @@
 
 ---
 
-## 三、
+## 三、获取图像特征向量（左中）
+
+- **模块**：get_clip_logits(...)
+
+- **作用**：对输入图像计算 CLIP 模型的特征向量、logits，以及相关的预测信息（如 loss、prob_map、pred）
+
+---
+
+## 四、Filter by Entropy（右下）
+
+- **模块1**：get_clip_logits(...)
+
+- **作用**：get_clip_logits(...) 选出最有信心（熵最小）的前 10% 样本，用它们做特征聚合，构建 Boosting Distribution。同时返回原图特征和 logits
+
+- **模块2**：get_entropy(...)
+
+- **作用**：把实际的熵 loss 除以理论最大熵，得到一个比例值 ∈ [0, 1]。比例越高，说明模型预测越不确定;比例越低，说明模型预测越 confident。
+
+---
+
+## 五、
